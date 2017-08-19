@@ -34,6 +34,9 @@ namespace LearingModeExample
 
             sSerialPort.Open();
 
+            // 224 - (E0) for learning single key
+            // 225 - (E1) for learning key combination (some remotes send two ir codes for a single key)
+
             Console.WriteLine("Start learning mode ...");
             sCommandCode = START_LEARNING_MODE;
             sSerialPort.Write(new byte[] { 224 }, 0, 1);
@@ -43,6 +46,11 @@ namespace LearingModeExample
 
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
+            /*
+            0xff - Command error / Learning error / The infrared code is empty or invalid
+            0x00 - success
+            */
+
             if (sCommandCode == START_LEARNING_MODE)
             {
                 // Response from start learning mode
