@@ -37,7 +37,7 @@ namespace SendingModeExample
 
             byte[] ir_array = ConvertStringArrayToByteArray(ircode);
 
-            byte[] new_ir_array = new byte[ir_array.Length + 1]; //New Array and the size of a which is 4
+            byte[] new_ir_array = new byte[ir_array.Length + 1]; 
 
             new_ir_array[0] = 227; // sending ir command.
 
